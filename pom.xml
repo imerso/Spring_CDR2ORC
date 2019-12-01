@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>net.tatic</groupId>
+	<artifactId>CDR2ORC</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>CDR2ORC</name>
+	<description>Conversor CDR para ORC</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency> 
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.tatic.cdr2orc</groupId>
+			<artifactId>orc-core-1.7.0-SNAPSHOT</artifactId>
+			<version>1.7.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/Lib/orc-core-1.7.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>net.tatic.cdr2orc</groupId>
+			<artifactId>orc-mapreduce-1.7.0-SNAPSHOT</artifactId>
+			<version>1.7.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/Lib/orc-mapreduce-1.7.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>net.tatic.cdr2orc</groupId>
+			<artifactId>orc-shims-1.7.0-SNAPSHOT</artifactId>
+			<version>1.7.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/Lib/orc-shims-1.7.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>net.tatic.cdr2orc</groupId>
+			<artifactId>orc-tools</artifactId>
+			<version>1.7.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/Lib/orc-tools-1.7.0-SNAPSHOT-uber.jar</systemPath>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

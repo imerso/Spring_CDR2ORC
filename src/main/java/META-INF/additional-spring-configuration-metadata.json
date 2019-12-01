@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "CDR.Path",
+  "type": "java.lang.String",
+  "description": "A description for 'CDR.Path'"
+}]}
