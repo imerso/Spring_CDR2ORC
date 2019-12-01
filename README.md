@@ -18,7 +18,7 @@ CDR2ORC
              |
              +------ ORC (arquivos ORC serão gerados aqui)
              |
-             +------ ARC (arquivos CDR processador serão movidos para cá)
+             +------ ARC (arquivos CDR processados serão movidos para cá)
 ```
 
 Ao ser iniciada, a aplicação carregará todos os arquivos ORC presentes no
