@@ -5,6 +5,7 @@ Baseado em Spring Web e ORC 1.7.0.
 
 Estrutura da aplicação:
 
+```
 CDR2ORC
    +
    |
@@ -18,6 +19,7 @@ CDR2ORC
              +------ ORC (arquivos ORC serão gerados aqui)
              |
              +------ ARC (arquivos CDR processador serão movidos para cá)
+```
 
 Ao ser iniciada, a aplicação carregará todos os arquivos ORC presentes no
 sub-diretório data/ORC, e chamadas REST poderão ser feitas para executar
