@@ -25,9 +25,7 @@ package net.tatic.cdr2orc.Orc_Support;
 
 import org.apache.commons.io.FilenameUtils;
 import java.io.*;
-import java.time.*;
 import java.nio.file.*;
-import java.util.ArrayList;
 
 
 public class CdrMonitor
