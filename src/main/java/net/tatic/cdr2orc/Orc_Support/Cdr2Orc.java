@@ -23,12 +23,6 @@
 
 package net.tatic.cdr2orc.Orc_Support;
 
-// https://orc.apache.org/docs/core-java.html
-//
-// Prova de conceito de um gerenciador de CDR em formato ORC.
-// Converte um arquivo CDR em um banco ORC
-//
-// por Vander, Dez/2019
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch;

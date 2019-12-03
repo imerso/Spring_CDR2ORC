@@ -117,12 +117,10 @@ public class OrcSearch
 			long instant_start = start.toInstant(ZoneOffset.ofHours(-3)).getEpochSecond();
 			long instant_end = end.toInstant(ZoneOffset.ofHours(-3)).getEpochSecond();
 
-			for (Reader reader : orc_files)
-			{
-				Reader.Options readerOptions = new Reader.Options(conf)
+			Reader.Options readerOptions = new Reader.Options(conf)
 					.searchArgument(
 					SearchArgumentFactory
-							.newBuilder()
+							.newBuilder(conf)
 							.startAnd()
 							.equals("caller", PredicateLeaf.Type.LONG, long_caller)
 							.between("start", PredicateLeaf.Type.LONG, instant_start, instant_end)
@@ -131,6 +129,8 @@ public class OrcSearch
 							new String[] { "caller" }
 					);
 
+			for (Reader reader : orc_files)
+			{
 				RecordReader rows = reader.rows(readerOptions);
 				VectorizedRowBatch read_batch = model_orc.getBatch();
 

@@ -23,12 +23,11 @@
 
 package net.tatic.cdr2orc;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import com.google.gson.Gson;
 
 import net.tatic.cdr2orc.Orc_Support.CdrMonitor;
 import net.tatic.cdr2orc.Orc_Support.Model_Cdr;
+import net.tatic.cdr2orc.Orc_Support.Model_Orc;
 import net.tatic.cdr2orc.Orc_Support.OrcSearch;
 
 import java.io.IOException;
@@ -39,12 +38,15 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@RestController
+//@RestController
+@Controller
 public class Cdr2OrcController
 {
 	// Caminho onde serão postados novos arquivos CDR
@@ -64,7 +66,7 @@ public class Cdr2OrcController
 
 	// Mantém um OrcSearch (buscas) sempre disponível
 	private OrcSearch searcher;
-
+	
 
 	@PostConstruct
     public void Init()
@@ -86,6 +88,15 @@ public class Cdr2OrcController
 		}
     }
 
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index()
+	{
+		System.out.println("[INDEX]");
+		
+		return "index.html";
+	}
+	
 
 	// Busca pelas chamadas de um número especificado,
 	// dentro de um período.
@@ -94,6 +105,7 @@ public class Cdr2OrcController
 	//
 	// http://localhost:8080/calls/5521987366501/2019-10-01T00:00/2019-10-31T23:59
 	//
+	@ResponseBody
 	@RequestMapping(value = "/calls/{caller}/{start}/{end}", method = RequestMethod.GET)
 	public String searchCaller(
 								@PathVariable String caller, 
@@ -106,14 +118,16 @@ public class Cdr2OrcController
 		// anota o tempo de início
 		long start_millis = System.currentTimeMillis();
 
+		// executa a busca
 		ArrayList<Model_Cdr> list = searcher.search_caller(caller, start, end);
 
 		// calcula o tempo de execução da busca
 		long end_millis = System.currentTimeMillis();
 		long elapsed = end_millis - start_millis;
+		System.out.println("Tempo de busca: " + elapsed + "ms");
 
 		// retorna um html rudimentar.
 		String json = new Gson().toJson(list);
-		return json + "<br>tempo: " + elapsed + "ms";
+		return json;
 	}
 }

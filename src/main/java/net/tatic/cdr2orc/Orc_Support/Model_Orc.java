@@ -23,12 +23,6 @@
 
 package net.tatic.cdr2orc.Orc_Support;
 
-// https://orc.apache.org/docs/core-java.html
-//
-// Prova de conceito de um gerenciador de CDR em formato ORC.
-// Converte um arquivo CDR em um banco ORC
-//
-// por Vander, Dez/2019
 import org.apache.hadoop.hive.ql.exec.vector.LongColumnVector;
 import org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch;
 import org.apache.orc.TypeDescription;
@@ -55,6 +49,19 @@ public class Model_Orc
 
 	public TypeDescription getSchema() { return schema; }
 	public VectorizedRowBatch getBatch() { return batch; }
+
+	// TimeZone GMT-3 para conversões
+	public static final ZoneId Zone_SaoPaulo = ZoneId.of("America/Sao_Paulo");
+	public static final ZoneId Zone_UTC = ZoneId.of("UTC");
+
+	// Converte data de uma timezone para outra
+	// https://stackoverflow.com/questions/34626382/convert-localdatetime-to-localdatetime-in-utc
+	public static LocalDateTime toZone(final LocalDateTime time, final ZoneId fromZone, final ZoneId toZone)
+    {
+        final ZonedDateTime zonedtime = time.atZone(fromZone);
+        final ZonedDateTime converted = zonedtime.withZoneSameInstant(toZone);
+        return converted.toLocalDateTime();
+    }
 
 
 	// Construtor
@@ -105,8 +112,13 @@ public class Model_Orc
 		serial.vector[row] = Long.parseLong(fields[3]);
 		type.vector[row] = Integer.parseInt(fields[4]);
 		duracao.vector[row] = Long.parseLong(fields[5]);
-		// 2019-10-23T13:23:10
-		Instant instant = Instant.parse(fields[6] + "Z");
+
+		// converte datas em UTC
+		// assumindo que estão sempre em GMT-3
+		// ex: 2019-10-23T13:23:10
+		LocalDateTime local_start = LocalDateTime.parse(fields[6]); 
+		Instant instant = local_start.atZone(Zone_SaoPaulo).toInstant();
+
 		start.vector[row] = instant.getEpochSecond();
 		cell_in.vector[row] = Long.parseLong(fields[7]);
 		cell_out.vector[row] = Long.parseLong(fields[8]);
