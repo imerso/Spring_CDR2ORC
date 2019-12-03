@@ -4,6 +4,27 @@ Monitora e converte CDR.TXT para ORC e permite pesquisas simples nas bases ORC.
 Baseado em Spring Web e ORC 1.7.0.
 
 
+## Rodando pelo Docker:
+
+Entre na pasta Docker, e rode:
+
+```
+docker build --tag cdr2orc .
+```
+
+Após criada a imagem:
+
+```
+docker run cdr2orc
+```
+
+Abra um navegador web e aponte para:
+
+```
+<ip_do_container>:8080
+```
+
+
 ## Estrutura da Aplicação:
 
 ```
@@ -33,7 +54,7 @@ Por enquanto apenas um tipo de consulta pode ser efetuado:
 	http://<url_servidor>/calls/<número_chamador>/<início YYYY-MM-DDTHH:MM>/<fim YYYY-MM-DDTHH:MM>
 
 
-## Exemplo de Chamada:
+## Exemplo de Chamada Manual:
 
 	http://localhost:8080/calls/5521987366501/2019-10-01T00:00/2019-10-31T23:59
 
@@ -43,7 +64,7 @@ novo arquivo, o mesmo é convertido para ORC automaticamente, passando a fazer p
 das próximas buscas.
 
 
-## Como Rodar:
+## Como Rodar Manualmente:
 
 ```
 java -jar CDR2ORC.jar
