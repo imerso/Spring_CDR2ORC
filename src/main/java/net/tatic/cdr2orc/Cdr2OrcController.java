@@ -92,8 +92,6 @@ public class Cdr2OrcController
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index()
 	{
-		System.out.println("[INDEX]");
-		
 		return "index.html";
 	}
 	

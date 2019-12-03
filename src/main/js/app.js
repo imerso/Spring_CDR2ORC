@@ -58,15 +58,15 @@ class App extends React.Component
 					<tr>
 						<td>
 							Data Inicial<br/>
-							<input type="date" id="_Start" name="_Start"></input>
+							<input type="date" id="_Start" name="_Start" required></input>
 						</td>
 						<td>
 							Data Final<br/>
-							<input type="date" id="_End" name="_End"></input>
+							<input type="date" id="_End" name="_End" required></input>
 						</td>
 						<td>
 							Número Originador<br/>
-							<input id="_Caller" name="_Caller"></input>
+							<input type="number" min="11111111" max="9999999999999" id="_Caller" name="_Caller" required></input>
 						</td>
 					</tr>
 					</tbody>
@@ -81,6 +81,13 @@ class App extends React.Component
 							var end = document.FrmSearchCaller.elements["_End"].value + "T23:59";
 							var url = "/calls/" + caller + "/" + start + "/" + end;
 
+							if (caller.length < 8 || start.length != 16 || end.length != 16)
+							{
+								alert("Por favor, preencha todos os campos.");
+								return;
+							}
+							
+							
 							fetch(url,
 							{ 
 								method: 'GET',

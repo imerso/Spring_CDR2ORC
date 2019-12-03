@@ -120,7 +120,7 @@ public class Model_Orc
 		Instant instant = local_start.atZone(Zone_SaoPaulo).toInstant();
 
 		start.vector[row] = instant.getEpochSecond();
-		cell_in.vector[row] = Long.parseLong(fields[7]);
-		cell_out.vector[row] = Long.parseLong(fields[8]);
+		cell_in.vector[row] = Long.parseLong(fields[9]);
+		cell_out.vector[row] = Long.parseLong(fields[10]);
 	}
 }
