@@ -18,6 +18,13 @@ Após criada a imagem:
 docker run cdr2orc
 ```
 
+E por fim:
+
+```
+docker start -ai <container_id>
+```
+
+
 Abra um navegador web e aponte para:
 
 ```
