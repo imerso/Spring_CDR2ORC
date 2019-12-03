@@ -24,6 +24,8 @@ Abra um navegador web e aponte para:
 <ip_do_container>:8080
 ```
 
+Note, no entanto, que nenhum registro estará no container ainda, portanto ainda não será possível fazer pesquisas. Será necessário copiar arquivos CDR.TXT para dentro do container.
+
 
 ## Estrutura da Aplicação:
 
